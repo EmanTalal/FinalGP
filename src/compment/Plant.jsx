@@ -1,8 +1,6 @@
 import Hero from '../compment/Hero';
 import PlanButtons from '../compment/PlanButtons';
 import CardPlan from './CardPlan';
-import Navbar from '../compment/Navbar';
-import Footer from '../compment/Footer';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -49,7 +47,6 @@ function Plant() {
   }, [formData.destination]);
   return (
     <>
-      <Navbar />
       <div className=" bg-white  h-fit">
         {/* ===============HERO=============== */}
         <Hero formData={formData} cityDescription={cityDescription} />
@@ -114,8 +111,6 @@ function Plant() {
         </div>
       </div>
       {/* =============================== */}
-
-      <Footer />
     </>
   );
 }

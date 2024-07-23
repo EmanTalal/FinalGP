@@ -1,3 +1,5 @@
+//Thanks for the help FAHAD!!!! ANT ASTORAH WALLAHY <3
+
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
@@ -10,8 +12,9 @@ function CardPlan() {
   };
   const [plans, setPlans] = useState([]);
   const [selectedDay, setSelectedDay] = useState(0);
-
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  // const { sentiment } = location.state || { sentiment: 'No data available' };
 
   useEffect(() => {
     // تقسيم النص إلى مصفوفة بناءً على وجود "Day" ككلمة فصل بين الأيام
@@ -43,6 +46,7 @@ function CardPlan() {
   const API_KEY = import.meta.env.API_KEY;
 
   const regeneratePlan = async () => {
+    setIsLoading(true);
     const prompt = `Give me a detailed plan for ${formData.numberOfDays} days in ${formData.destination}. 
     The plan should consider the following:
     - Group: ${formData.group}
@@ -128,49 +132,23 @@ function CardPlan() {
     } else {
       console.error('Error.');
     }
+    setIsLoading(false);
   };
 
   return (
     <div className="flex flex-col items-center ">
-      <div className="CARDCONTAINER flex flex-col md:flex-row bg-gray-200 rounded-xl shadow-lg mb-4 w-full md:w-1/2 sm:w-1/2  h-96 overflow-y-auto">
+      <div className="CARDCONTAINER flex flex-col md:flex-row bg-gray-200 rounded-xl shadow-lg mb-4 w-[85%] max-md:w-[60%] max-sm:w-[80%] h-72 max-md:overflow-y-auto">
         <div className="w-full md:w-1/2">
           <img
-            src="https://scth.scene7.com/is/image/scth/the-national-museum-of-saudi-arabia-desktop-1:crop-1920x1080?defaultImage=the-national-museum-of-saudi-arabia-desktop-1&wid=1920&hei=1080"
+            src="https://images.pexels.com/photos/1004584/pexels-photo-1004584.jpeg?auto=compress&cs=tinysrgb&w=600"
             alt=""
-            className="w-full h-32 md:h-full md:rounded-l-xl "
+            className="w-full h-full max-md:h-full rounded-l-xl max-sm:rounded-xl max-md:rounded-xl"
           />
         </div>
-        <div className="mx-3 my-3 w-full md:w-2/3">
-          <h1 className="text-lg text-gray-800">
-            {/* <select
-              className="bg-white text-black"
-              onChange={handleDayChange}
-              value={selectedDay}
-            >
-              {plans.map((plan, index) => (
-                <option key={index} value={index}>
-                  Day {index + 1}
-                </option>
-              ))}
-            </select> */}
-            <p className="text-black">
-              {plans[selectedDay] || 'No plan available for this day'}
-            </p>
-          </h1>
-          <div className="text-xs text-gray-600">
-            {/* <h2 className="text-base text-gray-600">Morning:</h2>
-            This museum offers a comprehensive overview of the country's history
-            and culture. The exhibits are well-displayed and there are plenty of
-            interactive activities to keep kids engaged.
-            <br /> */}
-            <a
-              href="https://maps.app.goo.gl/1eHjCpEPJoo9hae58"
-              target="_blank"
-              className="text-orange-500 transition-all duration-300 group-hover:text-white"
-            >
-              Check on map &rarr;
-            </a>
-          </div>
+        <div className="mx-3 my-3 w-fit max-md:w-fit md:overflow-y-auto">
+          <p className="text-lg text-gray-800">
+            {plans[selectedDay] || 'No plan available for this day'}
+          </p>
         </div>
       </div>
       <div className="CARDCONTAINER flex justify-center">
@@ -186,7 +164,7 @@ function CardPlan() {
                 Replan
                 <img
                   src="https://img.icons8.com/?size=100&id=35635&format=png&color=000000"
-                  className="w-5 ml-2"
+                  className={`w-5 ml-2 ${isLoading ? 'animate-spin' : ''}`}
                   alt="Replan icon"
                 />
               </div>
