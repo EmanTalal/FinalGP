@@ -87,6 +87,7 @@ function Plant() {
                 </div>
               </div>
             </div>
+            {/*Sultan's map function */}
             <div className="mx-auto max-w-xl px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0 -z-0 ">
               <div className="mt-6">
                 {latitude && longitude ? (
