@@ -52,7 +52,7 @@ function Plant() {
         {/* ===============HERO=============== */}
         <Hero formData={formData} cityDescription={cityDescription} />
         <br />
-        {/* ===============CONTAINER AND CONTENET=============== */}
+        {/* ================CONTAINER AND CONTENET=============== */}
         <div className="bg-white flex flex-wrap justify-center gap-4">
           <CardPlan sentiment={sentiment} formData={formData} />
         </div>

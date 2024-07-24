@@ -14,7 +14,7 @@ function CardPlan() {
   const [selectedDay, setSelectedDay] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  // const { sentiment } = location.state || { sentiment: 'No data available' };
+  // const s{ sentiment } = location.state || { sentiment: 'No data available' };
 
   useEffect(() => {
     // تقسيم النص إلى مصفوفة بناءً على وجود "Day" ككلمة فصل بين الأيام
