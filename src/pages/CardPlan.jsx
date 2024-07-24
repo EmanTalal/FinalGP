@@ -45,6 +45,7 @@ function CardPlan() {
 
   const API_KEY = import.meta.env.API_KEY;
 
+  //EMAN'S REPLAN function
   const regeneratePlan = async () => {
     setIsLoading(true);
     const prompt = `Give me a detailed plan for ${formData.numberOfDays} days in ${formData.destination}. 
@@ -155,6 +156,7 @@ function CardPlan() {
         <div className="flex flex-wrap justify-center bg-gray-100 rounded-lg relative w-fit h-auto ">
           <div className="w-full sm:w-fit flex justify-center p-2">
             <div className="dropdown w-full">
+              {/*EMAN'S REPLAN function */}
               <div
                 tabIndex={0}
                 role="button"
